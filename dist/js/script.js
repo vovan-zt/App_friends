@@ -14,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 card.classList.add('cards__wrapper');
               
                 card.innerHTML = `
-                
                     <div class="cards__wrapper-name">
                         <h3> ${item.name.first} ${item.name.last}</h3>
                     </div>
@@ -70,15 +69,13 @@ window.addEventListener('DOMContentLoaded', () => {
             allPeople = document.querySelector('#all'),
             reset = document.querySelector('.filter__reset-button');
 
-
-        // Сортировка по возрасту
-
         function deleteDataBase () {
             cardsWrapper.forEach(item => {
                 item.innerHTML = '';
             }) 
         }  
 
+        // Сортировка по возрасту
         function sortByAgeUp(arr) {
             arr.sort((a, b) => a.dob.age > b.dob.age ? 1 : -1);
         }
@@ -87,13 +84,11 @@ window.addEventListener('DOMContentLoaded', () => {
             arr.sort((a, b) => a.dob.age < b.dob.age ? 1 : -1);
         }
 
-
         function filterAge(filter, sorting) { 
             filter.addEventListener('click', e => {
                 e.preventDefault();
                 sorting(dataBase);
-                deleteDataBase();
-                         
+                deleteDataBase();        
                 render(dataBase);
             });
         }
@@ -117,8 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
          // Сортировка по имени
-
-         function sortByNameUp(arr) {
+        function sortByNameUp(arr) {
             arr.sort((a, b) => a.name.first > b.name.first ? 1 : -1);
         }
 
@@ -143,8 +137,8 @@ window.addEventListener('DOMContentLoaded', () => {
          filterAge(nameDown, sortByNamedDown);
          sortByName()
 
-         // Сортировка по полу
 
+         // Сортировка по полу
          function sortBySex(gender) {
             gender.addEventListener('change', e => {
                 let target = e.target.value;
@@ -162,8 +156,8 @@ window.addEventListener('DOMContentLoaded', () => {
         sortBySex(female);
         sortBySex(allPeople);
 
-        // сброс
 
+        // сброс фильтров
         function resetFilter () {
             reset.addEventListener('click', e => {
                 e.preventDefault();
