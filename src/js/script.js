@@ -35,7 +35,6 @@ function createCards({ picture, name, dob, gender, location, email, cell }) {
     }
 
     cardSection.innerHTML = `
-    
     <div class="cards__wrapper-name ${bgcolorName}">
     <h3> ${name.first} ${name.last}</h3>
     </div>
