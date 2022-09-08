@@ -1,8 +1,11 @@
 ﻿const url = 'https://randomuser.me/api/?results=20'
 
-const myForm = document.querySelector('.form')
-const cards = document.querySelector('.cards')
-const resetBtn = document.querySelector('.filter__reset-button')
+const myForm = document.querySelector('.form'),
+    cards = document.querySelector('.cards'),
+    resetBtn = document.querySelector('.filter__reset-button'),
+    hamburgerBtn = document.querySelector('.hamburger'),
+    filter = document.querySelector('.filter'),
+    closeBtn = document.querySelector('.filter__close')
 
 let dataBase = []
 let sortedDataBase = []
@@ -158,9 +161,15 @@ function changeForm() {
     return searchInput
 }
 
+function toggleFilter() {
+    filter.classList.toggle('filter__active')
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     getResponse()
 
+    hamburgerBtn.addEventListener('click', toggleFilter)
+    closeBtn.addEventListener('click', toggleFilter)
     myForm.addEventListener('input', changeForm)
     myForm.addEventListener('submit', (e) => e.preventDefault())
     resetBtn.addEventListener('click', resetFilters)

@@ -16,44 +16,73 @@ main {
 }
 
 .header {
+	background: #1f2833;
+	height: 50px;
+	position: relative;
+	&__wrapper {
+	position: fixed;
+	width: 100%;	
+	}
+	&__title {
 	text-align: center;
 	background-color:#0b0c10;
 	color:$main-color;
+	}
 }
 .container {
 	display: grid;
-	grid-template-columns: 200px 1fr;
+	grid-template-columns:1fr;
 	grid-template-rows: auto;
 	gap: 20px;
 	padding: 10px;
 }
 .filter {
-	
-	&__wrapper {
-	height: 540px;
-	background-color:rgba(0, 0, 0, 0.7);
-	margin: 0;
-	box-shadow: 3px 3px 10px  #000;
 	position: fixed;
-	border-radius:5px;
+	top: 0;
+	left: -100%;
+	width:100%;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.6s all;
+	&__wrapper {
+		position: relative;
+		width:230px;
+		padding-top: 50px;
+		padding-left: 10px;
+		border-radius:5px;
+		background-color:rgba(57, 56, 56, 0.9);
+		height: 100%;
+		transition: 0.6 all;
+		z-index: 10;
+		box-shadow: 3px 3px 10px 5px #000;
 	}
-	&__age, &__name , &__gender {
+	&__active {
+		left: 0;
+		visibility: visible;
+		opacity: 1;
+	}
+	&__close {
+		display: block;
+		position: absolute;
+		top: 25px;
+		right: 25px;
+		cursor: pointer;
+	}
+	&__sorting {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		align-content: space-around;
-		width: 180px;
-		height: 100px;
 		padding: 10px;
 		color:#45a29e;
-		box-shadow: 3px 3px 10px  #000;
 		border-radius:5px;
 		&-title {
 			width: 100%;
 			text-align: center;
-			font-size: 22px;
+			font-size: 20px;
 			font-weight: 400;
-			color:#c5c6c7;
+			color:$third-color;
 		}	
 		&-up, &-down {
 			width: 50px;
@@ -66,8 +95,6 @@ main {
 		&-search {
 			padding-top: 10px;
 			width: 100%;
-			position: relative;
-			display: flex;
 		}
 		&-searchTerm {
 			width: 80%;
@@ -77,22 +104,9 @@ main {
 			border-radius: 5px;
 			outline: none;
 		}
-		// &-searchButton {
-		// 	width: 40px;
-		// 	height: 36px;
-		// 	border: 1px solid $second-color;
-		// 	background: $second-color;
-		// 	text-align: center;
-		// 	color: #eeeeee;
-		// 	border-radius: 0 5px 5px 0;
-		// 	cursor: pointer;
-		// 	font-size: 20px;
-		// }	
-	}
-	&__age, &__name {
-		height: 160px;
 	}
 	&__reset {
+		height: 50px;
 		&-button {
 			width: 100px;
 			font-size: 20px;
@@ -110,12 +124,12 @@ main {
 	}
 }
 .cards {
-	min-width: 1400px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 230px);
 	grid-template-rows: 310px;
 	column-gap: 10px;
 	row-gap: 20px;
+	justify-content: space-around;
 	&__wrapper {
 		background-color:#c7c9cc;
 		box-shadow: 3px 3px 10px  #000;
@@ -142,7 +156,6 @@ main {
 				width: 100%;
 				height:100%;
 				object-fit: fill;
-
 			}
 		}
 		&-years {
@@ -169,7 +182,6 @@ main {
 		}
 	}
 }
-
 .devider {
 	width: 90%;
 	border-top: 1px solid gray;
@@ -181,76 +193,23 @@ main {
 .bgcolor_violet {
 	background-color: $third-color;
 }
-
-@media (max-width: 1140px) {
-	.cards {
-		grid-template-columns: repeat(3, 250px);
+.hamburger {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	height: 21px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items:flex-end;
+	cursor: pointer;
+	span {
+		display: block;
+		width: 30px;
+		height: 3px;
+		background: #babcb8;
 	}
-
-}
-
-@media (max-width: 990px) {
-	.cards {
-		grid-template-columns: repeat(2, 250px);
+	span.long {
+		width: 38px; 
 	}
-
-}
-
-@media (max-width: 768px) {
-	.container {
-		grid-template-columns:1fr;
-	}
-	.filter {
-		width: 700px;
-		height: 200px;
-		position:static;
-		display: flex;
-
-	}
-
-	.cards {
-		grid-template-columns: repeat(3, 230px);
-		padding: 0;
-	}
-
-}
-
-@media (max-width: 720px) {
-	.filter {
-		padding-top: 20px;
-		width: 350px;
-		height: 420px;
-		flex-direction: column;
-		&__age, &__name , &__gender {
-			width: 90%;
-		}
-	}
-
-	.cards {
-		grid-template-columns: repeat(2, 250px);
-	}
-}
-
-@media (max-width: 525px) {
-	.filter {
-		padding-top: 20px;
-		width: 350px;
-		height: 420px;
-		flex-direction: column;
-		&__age, &__name , &__gender {
-			width: 90%;
-		}
-	}
-	.cards {
-		grid-template-columns: repeat(1, 250px);
-	}
-
-}
-
-@media (max-width: 375px) {
-	.filter {
-		width: 350px;
-	
-	}
-
 }
